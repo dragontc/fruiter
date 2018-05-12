@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>区块链水果切</title>
+		
+	<style>
+	 	html{
+		width:100%;
+		height:100%;
+		overflow: hidden;
+		background-image: url('./img/background.jpg');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		color:white;
+		/*cursor: url('2.jpg'), default;"*/
+	}
+	
+	#loss{
+		width:100%;
+		height:100%;
+		overflow: hidden;
+		background-image: url('./img/9.svg');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		z-index: -1;
+	}
+	#t2{
+		background-image: url('./img/2.svg')
+	}
+	#t3{
+		background-image: url('./img/3.svg')
+	}
+	#t4{
+		background-image: url('./img/4.svg')
+	}
+	#t5{
+		background-image: url('./img/5.svg')
+	}
+	#t6{
+		background-image: url('./img/6.svg')
+	}
+	#t7{
+		background-image: url('./img/7.svg')
+	}
+	#t8{
+		background-image: url('./img/8.svg')
+	}
+
+	.t{
+		height:65px;
+		width:65px;
+	}
+	#apple{
+		height:50px;
+		width:50px;
+		background-image: url('./img/苹果.svg');	
+	}
+	.size{
+		background-repeat: no-repeat;
+		position:absolute;
+		display: none;
+		top:100%;
+		left:50%;
+		background-size: 100% 100%;
+		border-radius: 10px;
+	}
+	#lla{
+		width:100px;
+		height:100px;
+		border-radius: 50%;
+		background-image: url('./img/9.svg');
+	}
+	#xg{
+		width:70px;
+		height:70px;
+		background-image:url('./img/10.svg'); 
+	}
+	#japple{
+		height:50px;
+		width:50px;
+		background-image: url('./img/金苹果.svg');
+	}
+	#taozi{
+		height:50px;
+		width:50px;
+		background-image: url('./img/水蜜桃.svg');
+	}
+	#xigua{
+		height:70px;
+		width:70px;
+		background-image: url('./img/text.svg');
+	}
+	.boom{
+		height:72px;
+		width:72px;
+		background-image: url('./img/boom.png');
+	}
+	#yingtao{
+		height:50px;
+		width:50px;
+		background-image: url('./img/樱桃.svg');
+	}
+	#search_value{
+		background-color: black;
+		display: none;
+		/*border:1px solid rgb(132,131,145);*/
+		border:1px solid rgb(132,131,145);
+		color:rgb(132,131,145);
+	/*	color:rgb(132,131,145);*/
+		width:170px;
+		height:25px;
+		padding-left:12.5px;
+		border-radius: 12.5px;
+		
+	}
+	#search_value:hover{
+		border-color: white;
+		color:white;
+	}
+	#search{
+		display: none;
+	}
+	#user{
+		display: none;
+		width:200px;
+	}
+	#user_content{
+		display: none;
+		width:200px;
+		height:100px;
+		margin-top:10px;
+	}
+	#confirm{
+		display: none;
+		margin-top:10px;
+		margin-left:65px;
+	}
+	</style>
+	<script src = js/index.js></script>
+	</head>
+
+	<body>
+		<p id = "get" style = "font-size:1.5em;" >得分:<span id = "score">0</span>  血量:<span id = "xue">10</span></p>
+		<input type = "button" value = "难度加大" id = "first" disabled="disabled">
+		<input type = "button" value = "难度减小" id = "second" disabled="disabled">
+		<br/>
+		<input type = "button" value = "炸弹加一" id = "boomfirst" disabled="disabled">
+		<input type = "button" value = "炸弹减一" id = "boomsecond" disabled="disabled">
+		<br/>
+		<input type = "button" value="开始游戏"  id = "startgame" >
+		<input type = "button" value="查询分数" id = "getrank"><br/><br/>
+		<input id = "search_value" type = "text" ><button id="search" >search</button>
+		<p id = "ale"  style = "font-size:1.5em;">欢迎来到区块链水果切<br/>点击开始游戏，5秒后游戏开始<br/>
+		玩法：金苹果加1点血，47秒提升一次难度<br/>每30秒出现一个boss，boss需要斩杀5次</p>
+		<p id = "wallet_install"></p>
+		<input id = "user" type = "text" placeholder="姓名"><br/>
+		<textarea id = "user_content"  placeholder="胜利宣言"></textarea><br/>
+		<button id="confirm" >confirm</button>
+		<div id = "apple" class="size"></div>
+		<div id = "xg" class = "size"></div>
+		<div id = "japple" class="size"></div>
+		<div id = "taozi" class="size"></div>
+		<div id = "t2" class="size t"></div>
+		<div id = "t3" class="size t"></div>
+		<div id = "t4" class="size t"></div>
+		<div id = "t5" class="size t"></div>
+		<div id = "t6" class="size t"></div>
+		<div id = "t7" class="size t"></div>
+		<div id = "t8" class="size t"></div>
+		<div id = "xigua" class="size"></div>
+		<div id = "boom1" class="size boom"> </div>
+		<div id = "boom2" class="size boom"> </div>
+		<div id = "boom3" class="size boom"> </div>
+		<div id = "boom4" class="size boom"> </div>
+		<div id = "yingtao" class="size"></div>
+		<div id = "loss"></div>
+		<div id = "lla" class="size"></div>
+
+		<script src=lib/jquery-3.3.1.min.js></script>
+		<script src=lib/nebPay.js></script>
+		<script src=lib/nebulas.js></script>
+		<script>
+		    var NebPay = require("nebpay");     
+       		var nebPay = new NebPay();
+		    
+		    
+        	if (typeof(webExtensionWallet) === "undefined"){
+        	    $("#wallet_install").html("<p onclick=\"{location.href='https://github.com/ChengOrangeJu/WebExtensionWallet'}\"> 请安装在线钱包，点击跳转<p>");
+				$("#getrank").attr("disabled",true);
+        	}else{
+        		$("#getrank").attr("disabled",false);
+        		$("#wallet_install").html("");
+        	}
+
+        	var serialNumber;
+        	var intervalQuery;
+ 			var dappAddress = "n1vzYF1Gry91Z1QiP63SniZRetWtRn7BxhB";
+ 			var rank = [];
+
+ 			$("#search").click(function(){
+ 				$("#ale").html("");
+ 				var to = dappAddress;
+				var value = "0";
+				var callFunction = "getrank";
+				var callArgs = ``;
+				nebPay.simulateCall(to, value, callFunction, callArgs, {    
+					listener: Search      //指定回调函数
+				});
+
+ 			})
+
+	 		function Search(resp) {
+	 			console.log(resp.reuslt);
+	 			var result = JSON.parse(resp.result);
+	 			var obj = JSON.parse(result);
+	 			var rank = [];
+	 			var length = obj.length;
+	 			for(var x = 0; x < length; x++){
+	 				rank.push(obj[x]);
+	 			}
+	 			// $("#ale").html(rank);
+	 			$.each(rank, function (i,v) {
+					print(v);
+				});
+				$("#search_value").val("");
+				if($("#ale").html() === "") {
+					$("#ale").html("not found")
+				}
+	 		}
+
+	 		function print(text){
+	 			var name = $("#search_value").val();	 			
+	 			if(name == text.name) {
+	 				$("#ale").html("<textarea style=\"height:200px;width:400px\">" + "name: " + name + "\n" + "score: " + text.score + "\n"+ "content: " + "\n    " + text.content + "</textarea>");
+	 			}
+	 			
+	 		}
+
+	 		$("#confirm").click(function(){
+	 			if($("#user").val() == ""){
+	 				alert("姓名不能为空")
+	 			}
+	 			if($("#user").val().length > 20){
+					alert('姓名太长')
+					return;
+				}
+				if($("#user_content").val().length > 128){
+					alert('内容太长')
+					return;
+				}
+
+				var to = dappAddress;
+				var value = "0";
+				var callFunction = "save";
+				var callArgs = [];
+				callArgs.push($("#user").val());
+				callArgs.push($("#score").html());
+				callArgs.push($("#user_content").val());
+				nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {    
+					listener: Save
+				});
+				$("#user").attr("disabled",true);
+				$("#user_content").attr("disabled",true);
+				$("#confirm").attr("disabled",true);
+	 		})
+				function Save(resp) {
+					console.log("response of save: " + resp)
+				}
+		</script>
+
+	</body>
+</html>
+
