@@ -181,7 +181,8 @@
 		<script src=lib/nebPay.js></script>
 		<script src=lib/nebulas.js></script>
 		<script>
-		    var NebPay = require("nebpay");     
+		window.onload = function(){
+		var NebPay = require("nebpay");     
        		var nebPay = new NebPay();
 		    
 		    
@@ -267,6 +268,7 @@
 				function Save(resp) {
 					console.log("response of save: " + resp)
 				}
+		}
 		</script>
 
 	</body>
